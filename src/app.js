@@ -7,10 +7,21 @@ const { NODE_ENV } = require('./config')
 
 
 const app = express()
+const todosRouter = require('../api/todos');
 
 const morganOption = (NODE_ENV === 'production')
     ? 'tiny'
     : 'common';
+
+app.use(cors());
+app.use(express.json());
+app.use(morgan(morganOption));
+app.use(helmet());
+
+app.use('/api/v1/todos', todosRouter);
+
+
+
 
 app.use(function errorHandler(error, req, res, next) {
     let response;
@@ -22,14 +33,11 @@ app.use(function errorHandler(error, req, res, next) {
     }
     res.status(500).json(response)
 });
-app.use(cors());
-app.use(express.json());
-app.use(morgan(morganOption));
-app.use(helmet());
 
 
-app.get('/', (req, res) => {
-    res.send("Hello, world!");
-})
+
+// app.get('/', (req, res) => {
+//     res.send("Hello, world!");
+// })
 
 module.exports = app
