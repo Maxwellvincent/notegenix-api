@@ -53,7 +53,8 @@ todosRouter.post('/', async(req, res, next) => {
 })
 
 // Create a route to edit/ update todo
-todosRouter.put('/:id', queries.isValidId, async(req,res, next) => {
+todosRouter.patch('/:id', queries.isValidId, async(req,res, next) => {
+    console.log(req.body);
     if(queries.validTodo(req.body)) {
         queries.updateTodo(req.params.id, req.body).then(todo => {
             res.json(todo[0]);
