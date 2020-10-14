@@ -28,7 +28,10 @@ module.exports = {
     client: 'postgresql',
     connection: process.env.DATABASE_URL,
     migrations: {
-      tableName: 'todos'
+      directory: './knex/migrations',
+    },
+    seeds: {
+      directory: './knex/seeds'
     }
   }
 
