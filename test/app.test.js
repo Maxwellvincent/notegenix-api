@@ -14,10 +14,6 @@ describe('CRUD todos', () => {
         })
     })
 
-    it('Selects all rows of data', async () => {
-        let data = await knex.from('todos').select('*')
-        expect(data.length).equal(data.length)
-    })
 
     it('List all Records', (done) => {
        request(app)
