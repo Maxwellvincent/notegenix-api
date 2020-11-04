@@ -5,7 +5,7 @@ module.exports = {
     getAllTodos() {
         return knex('todos');
     },
-    isValidId(req,res, next){
+    isValidId(req, res, next){
         if(!isNaN(req.params.id)) return next();
         next(new Error('Invalid ID'));
     },
@@ -24,6 +24,12 @@ module.exports = {
     },
     deleteTodo(id) {
         return knex('todos').where('id', id).delete();
+    },
+    getUser(email) {
+        return knex('users').where('email', email).first()
+    },
+    createNewUser(user_name, email, bPassword){
+        return knex('users').insert([{user_name, email, user_password: bPassword}],"*");
     }
 
 }

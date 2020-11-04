@@ -8,6 +8,7 @@ const { NODE_ENV } = require('./config')
 
 const app = express()
 const todosRouter = require('../api/todos');
+const routesAuth = require('../api/jwtAuth');
 
 const morganOption = (NODE_ENV === 'production')
     ? 'tiny'
@@ -36,6 +37,9 @@ app.use(helmet());
 
 app.use('/api/v1/todos', todosRouter);
 
+
+//register and login in routes
+app.use('/auth', routesAuth);
 
 
 
