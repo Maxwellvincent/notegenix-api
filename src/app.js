@@ -13,6 +13,8 @@ const morganOption = (NODE_ENV === 'production')
     ? 'tiny'
     : 'common';
 
+    //middleware
+
 app.use(cors());
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -25,9 +27,12 @@ app.use(function(req, res, next) {
         next();
     }
 });
-app.use(express.json());
+app.use(express.json()); //allows for access to req.body
 app.use(morgan(morganOption));
 app.use(helmet());
+
+
+//ROUTES//
 
 app.use('/api/v1/todos', todosRouter);
 
