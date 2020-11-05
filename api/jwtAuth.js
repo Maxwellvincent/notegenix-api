@@ -17,7 +17,7 @@ routesAuth.post('/register', validInfo, async (req, res) => {
          queries.getUser(email).then(async user => {
             let token;
             if(user){
-                res.status(401).send("email already exist");
+                res.status(401).json("email already exist");
             } else {
                  //3. bcrypt the user password
                     const saltRound = 10;
