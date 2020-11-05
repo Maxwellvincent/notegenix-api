@@ -3,10 +3,13 @@ const queries = require('../db/queries');
 const knex = require('../db/knex'); //methods to search database
 const bcrypt = require('bcrypt');
 const jwtGenerator = require('../utils/jwtGenerator');
+const validInfo = require("../Middleware/validinfo");
+const authorization = require("../Middleware/authorization");
+
 
 
 //registering to add data, someone new
-routesAuth.post('/register', async (req, res) => {
+routesAuth.post('/register', validInfo, async (req, res) => {
     try {
         //1. destructure the req.body (name, email, password)
         const {user_name, email, user_password} = req.body;
@@ -31,7 +34,8 @@ routesAuth.post('/register', async (req, res) => {
                         //5. generating our jwt token
                     token = jwtGenerator(newUser.user_id);
                 } 
-                console.log({token});
+                // console.log({token});
+                res.json({token});
         });
          
     } catch (err) {
@@ -43,7 +47,7 @@ routesAuth.post('/register', async (req, res) => {
 
 //login route
 
-routesAuth.post('/login', async (req,res) => {
+routesAuth.post('/login', validInfo, async (req,res) => {
     try {
         //1. destructure the req.body
         const {email, user_password} = req.body;
@@ -70,6 +74,13 @@ routesAuth.post('/login', async (req,res) => {
     }
 })
 
-
+routesAuth.get("/is-verify", authorization, async (req,res) => {
+    try {
+        res.json(true);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error")
+    }
+});
 
 module.exports = routesAuth;
