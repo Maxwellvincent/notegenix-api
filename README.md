@@ -5,12 +5,27 @@
 
 ### Todos Endpoint
 
-#### GET/api/v1/todos
+#### GET /api/v1/todos
 
-Returns a list of all todos within the database.
+ Returns a list of all todos within the database.
 
+#### GET /api/v1/todos/:id
 
+ Returns a single todo within the database at that id.
 
+#### POST /api/v1/todos
+
+Creates a todo object to send to the database
+  
+  {
+   description: "" 
+  }
+  
+#### Patch /api/v1/todos/:id
+
+Edit/update a previously created todo within the database.
+
+#### Delete /api/v1/todos/:id
 
 ### Authentication
 What is the preferred way of using the API?
