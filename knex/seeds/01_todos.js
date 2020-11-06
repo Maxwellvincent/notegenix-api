@@ -7,14 +7,14 @@ exports.seed = function(knex) {
       const todos = [
         {
         description: "this is note 1",
-        user_id: 1
+        user_id: 58
         
       },{
         description: "this is note 2",
-        user_id: 2
+        user_id: 59
       }, {
         description: "this is note 3",
-        user_id: 3
+        user_id: 60
       }];
     // placing the array of notes into the todos table
       return knex('todos').insert(todos);  
