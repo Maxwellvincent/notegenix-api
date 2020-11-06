@@ -3,9 +3,14 @@
  
 ## Documentation of API
 
-You can use FETCH to call the Todo API and you will receive a list of tasks in return.
+### Todos Endpoint
 
-![image](https://user-images.githubusercontent.com/44560811/96656664-48fde200-130e-11eb-9518-98ab35e5f792.png)
+#### GET/api/v1/todos
+
+Returns a list of all todos within the database.
+
+
+
 
 ### Authentication
 What is the preferred way of using the API?
