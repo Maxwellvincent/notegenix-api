@@ -1,26 +1,46 @@
-# Express Boilerplate!
+# NoteGenix API
+ A databse that stores and contains a task object. The task object is able to be updated, edited, and destroyed.
+ 
+## Documentation of API
 
-This is a boilerplate project used for starting new projects!
+### Todos Endpoint
 
-## Set up
+#### GET /api/v1/todos
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+ Returns a list of all todos within the database.
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+#### GET /api/v1/todos/:id
 
-## Scripts
+ Returns a single todo within the database at that id.
 
-Start the application `npm start`
+#### POST /api/v1/todos
 
-Start nodemon for the application `npm run dev`
+Creates a todo object to send to the database
+  
+  {
+   description: "" 
+  }
+  
+#### Patch /api/v1/todos/:id
 
-Run the tests `npm test`
+Edit/update a previously created todo within the database.
 
-## Deploying
+#### Delete /api/v1/todos/:id
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### Authentication
+What is the preferred way of using the API?
+- No Authentication
+
+### Error Codes
+Notegenix uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the 5xx range indicate an error with Stripe's servers (these are rare).
+
+### Rate limit
+Is there a limit to the number of requests an user can send?
+There is not a rate limit set at this time, user is able to make as many requests at they need
+
+## Summary
+
+## Technology Used
+- Express
+- Knex
+- PSQL
